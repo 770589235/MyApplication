@@ -45,6 +45,25 @@
         android:layout_height="wrap_content"
         android:text="获取安装应用的包名"/>
 
+
+    <Button
+        android:id="@+id/get_json_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="解析json"/>
+
+    <Button
+        android:id="@+id/number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="检测NumberFormatException"/>
+
+    <EditText
+        android:id="@+id/amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

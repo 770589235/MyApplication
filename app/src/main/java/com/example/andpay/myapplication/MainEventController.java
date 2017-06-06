@@ -30,6 +30,12 @@ public class MainEventController extends AbstractEventController{
             case R.id.get_package:
                 mainActivity.plintPkgAndCls(mainActivity.getResolveInfos());
                 break;
+            case R.id.get_json_data:
+                mainActivity.getJsonData();
+                break;
+            case R.id.number:
+                mainActivity.numberFormat();
+                break;
             default: break;
         }
     }

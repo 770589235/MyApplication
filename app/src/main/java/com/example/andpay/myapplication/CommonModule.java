@@ -7,7 +7,7 @@ public class CommonModule extends TiMobileModule {
     @Override
     protected void configure() {
 
-       bindEventController(MainEventController.class);
+      //bindEventController(MainEventController.class);
 
 
 
