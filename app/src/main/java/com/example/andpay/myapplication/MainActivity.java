@@ -1,5 +1,6 @@
 package com.example.andpay.myapplication;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -57,9 +58,24 @@ public class MainActivity extends TiFlowActivity{
     @InjectView(R.id.amount)
     private EditText et_amount;
 
+    private ProgressDialog dialog;
+
     @Override
     protected void doCreate(Bundle savedInstanceState) {
         super.doCreate(savedInstanceState);
+        showProgressDialog();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(5000);
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }).start();
     }
 
     private String jsonSource="[{ \"stu_no\":12345,\"stu_name\":\"John\",\"stu_sex\":\"male\"\n" +
@@ -72,6 +88,28 @@ public class MainActivity extends TiFlowActivity{
     public void goRegister(){
 
 
+    }
+
+    private void showProgressDialog(){
+        if(dialog==null){
+            dialog=new ProgressDialog(this);
+            dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            dialog.setMessage("正在加载中...");
+        }
+        dialog.show();
+    }
+
+
+    private void dismissProgressDialog(){
+        if(dialog!=null && dialog.isShowing()){
+            dialog.dismiss();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e(TAG, "onResume: is executed!");
     }
 
     /**
@@ -89,11 +127,12 @@ public class MainActivity extends TiFlowActivity{
         }
 
         try {
-            BigDecimal bd=new BigDecimal(amount);
+            BigDecimal bd=new BigDecimal(amount).setScale(2, BigDecimal.ROUND_HALF_UP);
         } catch (NumberFormatException e) {
             info.setText("数值的格式错误");
             et_amount.setText("");
             e.printStackTrace();
+            Log.e(TAG, "numberFormat: "+e.getMessage());
             return;
         }
 
