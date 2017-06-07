@@ -8,11 +8,10 @@
     android:gravity="center_horizontal"
     tools:context="com.example.andpay.myapplication.MainActivity">
 
-
     <Button
-        android:id="@+id/login"
+        android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="登陆"/>
+        android:text="返回"/>
 
 </LinearLayout>

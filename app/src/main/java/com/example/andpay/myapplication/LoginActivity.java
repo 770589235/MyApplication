@@ -1,22 +1,21 @@
 package com.example.andpay.myapplication;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
-    public static final String TAG=MainActivity.class.getName();
+    public static final String TAG=LoginActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        findViewById(R.id.login).setOnClickListener(this);
+        setContentView(R.layout.activity_login);
+        findViewById(R.id.back).setOnClickListener(this);
         Log.e(TAG, TAG+"---onCreate: ");
     }
 
@@ -63,11 +62,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.e(TAG, TAG+"---onNewIntent: ");
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.login:
-                Intent intent=new Intent(this, LoginActivity.class);
+            case R.id.back:
+                Intent intent=new Intent(this, MainActivity.class);
                 startActivity(intent);
                 break;
             default: break;
