@@ -24,18 +24,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         et_amount=(EditText) findViewById(R.id.amount);
         findViewById(R.id.login).setOnClickListener(this);
+        findViewById(R.id.wifi).setOnClickListener(this);
         Log.e(TAG, TAG+"---onCreate: ");
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(8000);
-                    BigDecimal bd=new BigDecimal(et_amount.getText().toString().trim()).setScale(2,BigDecimal.ROUND_HALF_UP);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Thread.sleep(8000);
+//                    BigDecimal bd=new BigDecimal(et_amount.getText().toString().trim()).setScale(2,BigDecimal.ROUND_HALF_UP);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
 
     }
 
@@ -66,9 +67,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
         Log.e(TAG, TAG+"---onResume: "+count);
-        if(count++==1){
-            et_amount.getText().clear();
-        }
+//        if(count++==1){
+//            et_amount.getText().clear();
+//        }
     }
 
     @Override
@@ -102,6 +103,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.login:
                 Intent intent=new Intent(this, LoginActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.wifi:
+                Intent wifiIntent=new Intent(this, WiFiActivity.class);
+                startActivity(wifiIntent);
                 break;
             default: break;
         }

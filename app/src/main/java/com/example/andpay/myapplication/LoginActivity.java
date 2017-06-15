@@ -1,11 +1,15 @@
 package com.example.andpay.myapplication;
 
+import android.app.ActivityManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -71,6 +75,37 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(intent);
                 break;
             default: break;
+        }
+    }
+
+    /**
+     * 判断某一个类是否存在任务栈里面
+     * @return
+     */
+    private boolean isExsitMianActivity(Class<?> cls){
+        Intent intent = new Intent(this, cls);
+        ComponentName cmpName = intent.resolveActivity(getPackageManager());
+        boolean flag = false;
+        if (cmpName != null) { // 说明系统中存在这个activity
+            ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+            List<ActivityManager.RunningTaskInfo> taskInfoList = am.getRunningTasks(10);
+            for (ActivityManager.RunningTaskInfo taskInfo : taskInfoList) {
+                if (taskInfo.baseActivity.equals(cmpName)) { // 说明它已经启动了
+                    flag = true;
+                    break;  //跳出循环，优化效率
+                }
+            }
+        }
+        return flag;
+    }
+    /**
+     * 进行逻辑处理
+     */
+    public void dealWithIntent(){
+        if(isExsitMianActivity(MainActivity.class)){//存在这个类
+            ;
+        }else{//不存在这个类
+            //进行操作
         }
     }
 }
