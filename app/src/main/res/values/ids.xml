@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="rb_select_apos" type="id" />
+    <item name="rb_select_npos" type="id" />
+    <item name="rb_select_cashier" type="id" />
+</resources>
